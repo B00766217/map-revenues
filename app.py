@@ -5,14 +5,15 @@ import dash_html_components as html
 import plotly.graph_objs as go
 
 import pandas as pd
-app = dash.Dash(__name__)
-server = app.server
+#app = dash.Dash(__name__)
+#server = app.server
+df = pd.read_csv("df_map_group_sum.csv")
 
-df_map_group_sum = pd.read_csv("df_map_group_sum.csv")
+#app.layout = html.Div([
 fig = go.Figure(data=go.Choropleth(
-    locations = df_map_group_sum['Territory'],
-    z = df_map_group_sum['2020B_amount'],
-    text = df_map_group_sum['Territory_name'],
+    locations = df['Territory'],
+    z = df['2020B_amount'],
+    text = df['Territory_name'],
     colorscale = 'Greens',
     autocolorscale=False,
     reversescale=False,
@@ -29,16 +30,8 @@ fig.update_layout(
         showcoastlines=False,
         projection_type='equirectangular'
     ),
-    #annotations = [dict(
-        #x=0.55,
-        #y=0.1,
-        #xref='paper',
-        #yref='paper',
-        #text='Hover over countries to see values',
-        #showarrow = False
-    #)]
-)
+),
 
 fig.show()
-if __name__ == '__main__':
-    app.run_server(debug=True)
+#if __name__ == '__main__':
+    #app.run_server(debug=True)
