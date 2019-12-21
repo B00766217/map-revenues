@@ -5,7 +5,7 @@ import dash_html_components as html
 import plotly.graph_objs as go
 
 import pandas as pd
-#app = dash.Dash(__name__)
+app = dash.Dash(__name__)
 server = app.server
 
 df_map_group_sum = pd.read_csv("df_map_group_sum.csv")
