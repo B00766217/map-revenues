@@ -6,7 +6,7 @@ import plotly.graph_objs as go
 
 import pandas as pd
 #app = dash.Dash(__name__)
-#server = app.server
+server = app.server
 
 df_map_group_sum = pd.read_csv("df_map_group_sum.csv")
 fig = go.Figure(data=go.Choropleth(
