@@ -14,7 +14,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
-app.layout = html.Div([html.Div([html.H1("SBKE Group - Revenues by Territory")],
+app.layout = html.Div([html.Div([html.H2("SBKE Group - Revenues by Territory")],
                                 style={'textAlign': "center", "padding-bottom": "30"}),
                        html.Div([html.Span("Select year : ", className="six columns",
                                            style={"text-align": "right", "width": "40%", "padding-top": 10}),
