@@ -24,7 +24,7 @@ app.layout = html.Div([html.Div([html.H2("SBKE Group - Revenues by Territory")],
                                                        {'label': "2019F ", 'value': '2019F'},
 													   {'label': "2020B ", 'value': '2020B'}],
                                               style={"display": "block", "margin-left": "auto", "margin-right": "auto",
-                                                     "width": "70%"},
+                                                     "width": "50%"},
                                               className="six columns")], className="row"),
                        dcc.Graph(id="my-graph")
                        ], className="container")
@@ -35,7 +35,7 @@ app.layout = html.Div([html.Div([html.H2("SBKE Group - Revenues by Territory")],
     [dash.dependencies.Input("value-selected", "value")]
 )
 def update_figure(selected):
-    dff = df.groupby(['Territory', 'Territory_name']).mean().reset_index()
+    dff = df.groupby(['Territory', 'Territory_name']).sum().reset_index()
     def title(text):
         if text == "2017A":
             return "Revenue 2017 Actual"
@@ -46,11 +46,11 @@ def update_figure(selected):
         else:
             return "Revenue 2020 Budget"
     trace = go.Choropleth(locations=dff['Territory'],z=dff[selected],text=dff['Territory_name'],autocolorscale=False,
-                          colorscale="YlGnBu",marker={'line': {'color': 'rgb(180,180,180)','width': 0.5}},
+                          colorscale="Blues",marker={'line': {'color': 'rgb(180,180,180)','width': 0.5}},
                           colorbar={"thickness": 10,"len": 0.3,"x": 0.9,"y": 0.7,
                                     'title': {"text": title(selected), "side": "bottom"}})
     return {"data": [trace],
-            "layout": go.Layout(title=title(selected),height=800,geo={'showframe': False,'showcoastlines': False,
+            "layout": go.Layout(title=title(selected),height=900,geo={'showframe': False,'showcoastlines': False,
                                                                       'projection': {'type': "miller"}})}
 
 if __name__ == '__main__':
